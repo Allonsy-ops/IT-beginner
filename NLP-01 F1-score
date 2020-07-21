@@ -1,0 +1,16 @@
+sklearn.metrics.f1_score(y_true, y_pred, *, labels=None, pos_label=1, average='binary', sample_weight=None, zero_division='warn')
+
+Compute the F1 score, also known as balanced F-score or F-measure
+F1 = 2 * (precision * recall) / (precision + recall)
+
+Accuracy = TP+TN/TP+FP+FN+TN
+Precision = TP/TP+FP
+Recall = TP/TP+FN
+
+比如池塘里有700条鱼，400只虾，200只龟，目标是捕鱼。现捞上来300条鱼，100只虾，100只龟。对鱼来说：
+Precision = 300/500 
+计算我们预测出来的某类样本中，有多少是被正确预测的。针对预测样本而言。
+Recall = 300/700
+针对原先实际样本而言，有多少样本被正确的预测出来了。
+
+average 是关于如何结合每个class的f1值。 
