@@ -1,0 +1,113 @@
+# 查找
+
+**考虑基本的数据结构**
+
+1. 查找有无 - 集合
+
+因为集合只包含键且键唯一。不允许重复。
+
+2. 查找对应关系 - 字典
+
+元素'a'出现了几次，a:次数
+
+3. 改变映射关系 - map
+
+通过将原有序列的关系映射统一表示为其他
+
+## 算法应用
+
+**[349. Intersection of Two Arrays](https://leetcode.com/problems/intersection-of-two-arrays/)**
+
+Example
+```
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [9,4]
+```
+
+直接用in返回就可以。 或者把nums1和nums2转成set。
+```python
+def intersection(numns1, nums2):
+  return set([i for i in nums1 if i in nums2])
+```
+
+或者用set内置方法
+```python
+def intersection(numns1, nums2):
+  set1 = set(nums1)
+  set2 = set(nums2)
+  return set1 & set2
+```
+
+set1 & set2 -> 交集
+
+set1 | set2 -> 并集
+
+set1 - set2 -> 差集
+
+**[350. Intersection of Two Arrays II](https://leetcode.com/problems/intersection-of-two-arrays-ii/)**
+
+给定两个数组nums,求两个数组的交集。
+
+-- 如nums1=[1,2,2,1],nums=[2,2]
+
+-- 结果为[2,2]
+
+-- 出现的顺序可以是任意的
+
+分析：
+
+元素出现的次数需要记录，那么set就不再适用。要记录元素的同时记录元素出现的频次。字典。
+
+```python
+def intersection(numns1, nums2):
+  from collectios import Counter  # 记录。。出现的次数
+  nums1_dic = Counter(nums1)  # 记录nums1中各元素出现的次数
+  list = []
+  for i in nums2:
+    if nums1_dic[i] > 0:  # 如果nums2中的某元素，在nums1中出现过
+      list.append(i)  # 将重复的元素放入列表中
+      nums1_dic[i] -= 1 # 字典中该元素出现的次数-1
+  return list
+```
+
+**[242. Valid Anagram](https://leetcode.com/problems/valid-anagram/)**
+
+Example
+```
+Input: s = "anagram", t = "nagaram"
+Output: true
+```
+
+不仅要储存元素，还要记录元素的个数。
+
+直接比较两字典是否相等。好简便的做法。
+
+```python
+def isAnagram(self, s: str, t: str) -> bool:
+  from collections import Counter
+  s_dic = Counter(s)
+  t_dic = Counter(t)
+  if s == t:
+    return true
+  else:
+    return false
+```
+
+**[202. Happy Number](https://leetcode.com/problems/happy-number/)**
+
+Write an algorithm to determine if a number n is "happy".
+
+A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.
+
+Return True if n is a happy number, and False if not.
+
+```
+Input: 19
+Output: true
+Explanation: 
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+```
+
