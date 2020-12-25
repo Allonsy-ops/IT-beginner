@@ -110,5 +110,8 @@ BETWEEN 1 PRECEDING AND 1 FOLLOWING 将框架指定为前一行+自身行+后一
     
 5.3
 
-1) 不指定PARTITION BY就是在全表内根据ORDER BY的列计算window function
+1) window function不指定PARTITION BY就是在全表内根据ORDER BY的列计算window function
 
+2) 为什么说窗口函数只能在SELECT子句中使用？ 
+
+因为SQL查询是按照FROM -> WHERE -> SELECT的顺序进行的，而窗口函数的计算要based on SELECT语句的结果，所以要在同一步进行。
