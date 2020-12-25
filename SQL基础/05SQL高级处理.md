@@ -110,7 +110,9 @@ BETWEEN 1 PRECEDING AND 1 FOLLOWING 将框架指定为前一行+自身行+后一
     
 5.3
 
-1) window function不指定PARTITION BY就是在全表内根据ORDER BY的列计算window function
+1) 窗口函数不指定PARTITION BY的效果是什么？
+
+window function不指定PARTITION BY就是在全表内根据ORDER BY的列计算window function
 
 2) 为什么说窗口函数只能在SELECT子句中使用？ 
 
